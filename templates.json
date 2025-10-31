@@ -1,0 +1,62 @@
+{
+  "templates": [
+    {
+      "id": 1,
+      "name": "Warung Kopi Filosofis",
+      "platform": "universal",
+      "description": "Potret melankolis kehidupan urban tradisional",
+      "data": {
+        "mainSubject": "Seorang kakek tua duduk sendirian di warung kopi sederhana di Tangerang, memandang jauh ke jalanan yang sepi",
+        "visualStyle": "sinematik",
+        "composition": ["close-up", "medium-shot"],
+        "lighting": "golden-hour",
+        "mood": ["melankolis", "nostalgia"],
+        "aspectRatio": "16:9"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Transformasi Sosial - Cyberpunk",
+      "platform": "midjourney",
+      "description": "Kontras antara modernitas dan tradisi",
+      "data": {
+        "mainSubject": "Pemuda dari komunitas marginal berdiri di antara gedung pencakar langit dan pemukiman kumuh, memegang buku dan smartphone",
+        "visualStyle": "cyberpunk",
+        "composition": ["wide-shot", "dutch-angle"],
+        "lighting": "neon",
+        "mood": ["penuh-harap", "absurd"],
+        "aspectRatio": "16:9",
+        "negativePrompt": "wajah blur, kualitas rendah, wajah cacat"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Nostalgia Buku Anak 90an",
+      "platform": "dalle",
+      "description": "Imaji masa kecil Indonesia era 90-an",
+      "data": {
+        "mainSubject": "Anak-anak bermain layangan di sawah dengan latar gunung, ilustrasi warna-warni cerah",
+        "visualStyle": "buku-anak-90an",
+        "composition": ["wide-shot"],
+        "lighting": "soft-box",
+        "mood": ["nostalgia", "sunyi"],
+        "aspectRatio": "4:3"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Magis Batik Modern",
+      "platform": "stable-diffusion",
+      "description": "Penggabungan tradisi batik dengan elemen fantasi",
+      "data": {
+        "mainSubject": "Dewi malam dengan gaun dari motif batik parang rusak, berdiri di taman bunga yang bercahaya",
+        "visualStyle": "batik",
+        "composition": ["close-up"],
+        "lighting": "chiaroscuro",
+        "mood": ["magis", "sunyi"],
+        "aspectRatio": "9:16",
+        "negativePrompt": "wajah Barat, mata biru, rambut pirang, teknologi modern"
+      }
+    }
+  ]
+}
