@@ -5,125 +5,248 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PromptForge Visual - Universal Prompt Builder</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> -->
 </head>
 <body>
     <div class="container">
         <header>
-            <h1><i class="fas fa-drafting-compass"></i> PromptForge Visual</h1>
+            <h1>🎨 PromptForge Visual</h1>
             <p class="tagline">Universal Prompt Builder untuk AI Image Generator</p>
         </header>
 
-        <!-- A. Platform Selector -->
-        <section class="card">
-            <h2>Pilih Platform AI</h2>
-            <select id="platformSelect">
-                <option value="universal">Universal (All Platforms)</option>
-                <option value="dalle">DALL·E / ChatGPT</option>
-                <option value="midjourney">Midjourney</option>
-                <option value="stable-diffusion">Stable Diffusion</option>
-                <option value="gemini">Google Gemini</option>
-                <option value="qwen">Qwen</option>
-            </select>
-        </section>
+        <!-- Navigation Tabs -->
+        <nav class="tabs">
+            <button class="tab-button active" data-tab="builder">🧩 Prompt Builder</button>
+            <button class="tab-button" data-tab="variations">🔄 Variations</button>
+            <button class="tab-button" data-tab="history">📊 History & Analytics</button>
+        </nav>
 
-        <!-- B. Visual Form Builder -->
-        <section class="card">
-            <h2>Bangun Prompt Anda</h2>
-            
-            <div class="form-group">
-                <label for="mainSubject"><i class="fas fa-bullseye"></i> Subjek Utama</label>
-                <textarea id="mainSubject" placeholder="Contoh: Seorang kakek duduk di warung kopi tua di Tangerang..."></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="visualStyle"><i class="fas fa-palette"></i> Gaya Visual</label>
-                <select id="visualStyle">
-                    <option value="">Pilih gaya...</option>
-                    <option value="studio ghibli">Studio Ghibli</option>
-                    <option value="realistis">Foto Realistis</option>
-                    <option value="batik">Ilustrasi Batik Modern</option>
-                    <option value="cyberpunk">Cyberpunk</option>
-                    <option value="buku-anak-90an">Ilustrasi Buku Anak Indonesia 90-an</option>
-                    <option value="minimalis">Minimalis</option>
-                    <option value="sinematik">Sinematik</option>
-                    <option value="custom">Custom (tulis di bawah)</option>
-                </select>
-                <input type="text" id="customStyle" placeholder="Tulis gaya custom..." style="display: none;">
-            </div>
-
-            <div class="form-group">
-                <label><i class="fas fa-ruler-combined"></i> Komposisi</label>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" value="close-up"> Close-up</label>
-                    <label><input type="checkbox" value="medium-shot"> Medium Shot</label>
-                    <label><input type="checkbox" value="wide-shot"> Wide Shot</label>
-                    <label><input type="checkbox" value="bird-eye"> Bird's Eye View</label>
-                    <label><input type="checkbox" value="dutch-angle"> Dutch Angle</label>
-                </div>
-                <input type="text" id="customComposition" placeholder="Komposisi lain...">
-            </div>
-
-            <div class="form-group">
-                <label for="lighting"><i class="fas fa-lightbulb"></i> Pencahayaan</label>
-                <select id="lighting">
-                    <option value="">Pilih pencahayaan...</option>
-                    <option value="golden-hour">Golden Hour</option>
-                    <option value="blue-hour">Blue Hour</option>
-                    <option value="neon">Cahaya Neon</option>
-                    <option value="overcast">Mendung (Overcast)</option>
-                    <option value="chiaroscuro">Chiaroscuro</option>
-                    <option value="soft-box">Soft Box</option>
-                    <option value="dramatic">Cahaya Dramatis</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label><i class="fas fa-smile"></i> Mood/Emosi</label>
-                <div class="tag-group" id="moodTags">
-                    <span class="tag" data-value="melankolis">Melankolis</span>
-                    <span class="tag" data-value="penuh-harap">Penuh Harap</span>
-                    <span class="tag" data-value="sunyi">Sunyi</span>
-                    <span class="tag" data-value="magis">Magis</span>
-                    <span class="tag" data-value="absurd">Absurd</span>
-                    <span class="tag" data-value="nostalgia">Nostalgia</span>
-                    <span class="tag" data-value="heroik">Heroik</span>
-                </div>
-            </div>
-
-            <div class="form-group" id="technicalParams">
-                <label><i class="fas fa-cogs"></i> Parameter Teknis</label>
-                <div class="inline-group">
-                    <select id="aspectRatio">
-                        <option value="">Rasio Aspek</option>
-                        <option value="1:1">1:1 (Square)</option>
-                        <option value="16:9">16:9 (Landscape)</option>
-                        <option value="9:16">9:16 (Portrait)</option>
-                        <option value="4:3">4:3</option>
-                        <option value="3:2">3:2</option>
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Builder Tab -->
+            <div id="builder" class="tab-pane active">
+                <!-- A. Platform Selector -->
+                <section class="card">
+                    <h2>Pilih Platform AI</h2>
+                    <select id="platformSelect">
+                        <option value="universal">Universal (All Platforms)</option>
+                        <option value="dalle">DALL·E / ChatGPT</option>
+                        <option value="midjourney">Midjourney</option>
+                        <option value="stable-diffusion">Stable Diffusion</option>
+                        <option value="gemini">Google Gemini</option>
+                        <option value="qwen">Qwen</option>
                     </select>
-                    <input type="text" id="modelVersion" placeholder="Versi model (opsional)">
-                </div>
+                </section>
+
+                <!-- B. Visual Form Builder -->
+                <section class="card">
+                    <h2>Bangun Prompt Anda</h2>
+                    
+                    <div class="form-group">
+                        <label for="mainSubject">🎯 Subjek Utama</label>
+                        <textarea id="mainSubject" placeholder="Contoh: Seorang kakek duduk di warung kopi tua di Tangerang..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="visualStyle">🖼️ Gaya Visual</label>
+                        <select id="visualStyle">
+                            <option value="">Pilih gaya...</option>
+                            <option value="studio ghibli">Studio Ghibli</option>
+                            <option value="realistis">Foto Realistis</option>
+                            <option value="batik">Ilustrasi Batik Modern</option>
+                            <option value="cyberpunk">Cyberpunk</option>
+                            <option value="buku-anak-90an">Ilustrasi Buku Anak Indonesia 90-an</option>
+                            <option value="minimalis">Minimalis</option>
+                            <option value="sinematik">Sinematik</option>
+                            <option value="custom">Custom (tulis di bawah)</option>
+                        </select>
+                        <input type="text" id="customStyle" placeholder="Tulis gaya custom..." style="display: none;">
+                    </div>
+
+                    <div class="form-group">
+                        <label>🎨 Palet Warna</label>
+                        <select id="colorPalette">
+                            <option value="">Pilih palet...</option>
+                            <option value="warm">Hangat (Golden, Amber, Orange)</option>
+                            <option value="cool">Dingin (Blue, Silver, Icy)</option>
+                            <option value="vibrant">Vibrant (Saturated, Bold)</option>
+                            <option value="pastel">Pastel (Soft, Gentle)</option>
+                            <option value="monochrome">Monokrom (Black & White)</option>
+                            <option value="earthy">Earth Tones (Brown, Green, Natural)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>📐 Komposisi</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" value="close-up"> Close-up</label>
+                            <label><input type="checkbox" value="medium-shot"> Medium Shot</label>
+                            <label><input type="checkbox" value="wide-shot"> Wide Shot</label>
+                            <label><input type="checkbox" value="bird-eye"> Bird's Eye View</label>
+                            <label><input type="checkbox" value="dutch-angle"> Dutch Angle</label>
+                        </div>
+                        <input type="text" id="customComposition" placeholder="Komposisi lain...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lighting">💡 Pencahayaan</label>
+                        <select id="lighting">
+                            <option value="">Pilih pencahayaan...</option>
+                            <option value="golden-hour">Golden Hour</option>
+                            <option value="blue-hour">Blue Hour</option>
+                            <option value="neon">Cahaya Neon</option>
+                            <option value="overcast">Mendung (Overcast)</option>
+                            <option value="chiaroscuro">Chiaroscuro</option>
+                            <option value="soft-box">Soft Box</option>
+                            <option value="dramatic">Cahaya Dramatis</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>😊 Mood/Emosi</label>
+                        <div class="tag-group" id="moodTags">
+                            <span class="tag" data-value="melankolis">Melankolis</span>
+                            <span class="tag" data-value="penuh-harap">Penuh Harap</span>
+                            <span class="tag" data-value="sunyi">Sunyi</span>
+                            <span class="tag" data-value="magis">Magis</span>
+                            <span class="tag" data-value="absurd">Absurd</span>
+                            <span class="tag" data-value="nostalgia">Nostalgia</span>
+                            <span class="tag" data-value="heroik">Heroik</span>
+                        </div>
+                    </div>
+
+                    <!-- Advanced Parameters -->
+                    <div class="form-group" id="advancedParams">
+                        <label>⚡ Parameter Lanjutan</label>
+                        
+                        <div class="slider-group">
+                            <label>Kreativitas (CFG Scale)</label>
+                            <input type="range" id="cfgScale" min="1" max="20" value="7" step="0.5">
+                            <span id="cfgValue">7</span>
+                        </div>
+                        
+                        <div class="slider-group">
+                            <label>Detail (Quality)</label>
+                            <input type="range" id="quality" min="0.5" max="2" value="1" step="0.1">
+                            <span id="qualityValue">1</span>
+                        </div>
+                        
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" id="enableWeighting" checked> Aktifkan Prompt Weighting</label>
+                            <label><input type="checkbox" id="enableBlending"> Aktifkan Prompt Blending</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="technicalParams">
+                        <label>⚙️ Parameter Teknis</label>
+                        <div class="inline-group">
+                            <select id="aspectRatio">
+                                <option value="">Rasio Aspek</option>
+                                <option value="1:1">1:1 (Square)</option>
+                                <option value="16:9">16:9 (Landscape)</option>
+                                <option value="9:16">9:16 (Portrait)</option>
+                                <option value="4:3">4:3</option>
+                                <option value="3:2">3:2</option>
+                            </select>
+                            <input type="text" id="modelVersion" placeholder="Versi model (opsional)">
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="negativePromptGroup" style="display: none;">
+                        <label for="negativePrompt">🚫 Negative Prompt</label>
+                        <textarea id="negativePrompt" placeholder="Apa yang TIDAK ingin muncul di gambar..."></textarea>
+                    </div>
+                </section>
+
+                <!-- C. Template Library -->
+                <section class="card">
+                    <h2>📚 Bank Template</h2>
+                    <select id="templateSelect">
+                        <option value="">Pilih template...</option>
+                    </select>
+                    <button id="loadTemplate">Muat Template</button>
+                </section>
             </div>
 
-            <div class="form-group" id="negativePromptGroup" style="display: none;">
-                <label for="negativePrompt"><i class="fas fa-ban"></i> Negative Prompt</label>
-                <textarea id="negativePrompt" placeholder="Apa yang TIDAK ingin muncul di gambar..."></textarea>
+            <!-- Variations Tab -->
+            <div id="variations" class="tab-pane">
+                <section class="card">
+                    <h2>🔄 Generate Variations</h2>
+                    <div class="variations-controls">
+                        <button id="generateVariationsBtn">Generate 3 Variations</button>
+                        <select id="variationsCount">
+                            <option value="3">3 Variations</option>
+                            <option value="5">5 Variations</option>
+                            <option value="8">8 Variations</option>
+                        </select>
+                    </div>
+                    
+                    <div id="variationsContainer" class="variations-container">
+                        <p class="placeholder">Klik "Generate Variations" untuk membuat variasi prompt</p>
+                    </div>
+                </section>
             </div>
-        </section>
 
-        <!-- C. Template Library -->
-        <section class="card">
-            <h2><i class="fas fa-book"></i> Bank Template</h2>
-            <select id="templateSelect">
-                <option value="">Pilih template...</option>
-            </select>
-            <button id="loadTemplate">Muat Template</button>
-        </section>
+            <!-- History & Analytics Tab -->
+            <div id="history" class="tab-pane">
+                <section class="card">
+                    <h2>📊 Prompt Analytics</h2>
+                    <div id="analyticsDisplay" class="analytics-container">
+                        <div class="score-card">
+                            <div class="score-circle" id="scoreCircle">
+                                <span id="scoreValue">0</span>
+                            </div>
+                            <div class="score-label">Prompt Score</div>
+                        </div>
+                        <div id="analyticsFeedback" class="feedback-container">
+                            <p>Analisis akan muncul di sini...</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="card">
+                    <h2>💾 History & Favorites</h2>
+                    <div class="history-controls">
+                        <button id="saveToHistoryBtn">Simpan ke History</button>
+                        <button id="saveToFavoritesBtn">⭐ Tambah ke Favorit</button>
+                        <button id="clearHistoryBtn">🗑️ Hapus History</button>
+                    </div>
+                    
+                    <div class="history-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="totalPrompts">0</span>
+                            <span class="stat-label">Total Prompts</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="favoriteCount">0</span>
+                            <span class="stat-label">Favorit</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="topPlatform">-</span>
+                            <span class="stat-label">Platform Terpopuler</span>
+                        </div>
+                    </div>
+
+                    <div class="history-tabs">
+                        <button class="history-tab active" data-history="recent">Terbaru</button>
+                        <button class="history-tab" data-history="favorites">Favorit</button>
+                    </div>
+
+                    <div id="historyList" class="history-list">
+                        <p class="placeholder">Riwayat prompt akan muncul di sini</p>
+                    </div>
+                </section>
+            </div>
+        </div>
 
         <!-- D. Output & Optimization -->
-        <section class="card">
-            <h2><i class="fas fa-sparkles"></i> Output Prompt</h2>
+        <section class="card output-section">
+            <h2>✨ Output Prompt</h2>
+            
+            <div class="output-header">
+                <div class="platform-badge" id="platformBadge">Universal</div>
+                <div class="prompt-length" id="promptLength">0 chars</div>
+            </div>
+            
             <div class="output-container">
                 <div id="finalPrompt" class="final-prompt"></div>
                 <div class="output-actions">
@@ -135,7 +258,7 @@
         </section>
 
         <footer>
-            <p>PromptForge Visual v1.0 - Dibuat dengan <i class="fas fa-heart"></i> untuk komunitas kreator Indonesia</p>
+            <p>PromptForge Visual v2.0 - Dibuat dengan ❤️ untuk komunitas kreator Indonesia</p>
         </footer>
     </div>
 
