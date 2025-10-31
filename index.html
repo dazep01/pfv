@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PromptForge Visual - Universal Prompt Builder</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome CDN -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Alternatif: jika ingin versi lebih stabil, gunakan -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-drafting-compass"></i> PromptForge Visual</h1>
+            <p class="tagline">Universal Prompt Builder untuk AI Image Generator</p>
+        </header>
+
+        <!-- A. Platform Selector -->
+        <section class="card">
+            <h2>Pilih Platform AI</h2>
+            <select id="platformSelect">
+                <option value="universal">Universal (All Platforms)</option>
+                <option value="dalle">DALL·E / ChatGPT</option>
+                <option value="midjourney">Midjourney</option>
+                <option value="stable-diffusion">Stable Diffusion</option>
+                <option value="gemini">Google Gemini</option>
+                <option value="qwen">Qwen</option>
+            </select>
+        </section>
+
+        <!-- B. Visual Form Builder -->
+        <section class="card">
+            <h2>Bangun Prompt Anda</h2>
+            
+            <div class="form-group">
+                <label for="mainSubject"><i class="fas fa-bullseye"></i> Subjek Utama</label>
+                <textarea id="mainSubject" placeholder="Contoh: Seorang kakek duduk di warung kopi tua di Tangerang..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="visualStyle"><i class="fas fa-palette"></i> Gaya Visual</label>
+                <select id="visualStyle">
+                    <option value="">Pilih gaya...</option>
+                    <option value="studio ghibli">Studio Ghibli</option>
+                    <option value="realistis">Foto Realistis</option>
+                    <option value="batik">Ilustrasi Batik Modern</option>
+                    <option value="cyberpunk">Cyberpunk</option>
+                    <option value="buku-anak-90an">Ilustrasi Buku Anak Indonesia 90-an</option>
+                    <option value="minimalis">Minimalis</option>
+                    <option value="sinematik">Sinematik</option>
+                    <option value="custom">Custom (tulis di bawah)</option>
+                </select>
+                <input type="text" id="customStyle" placeholder="Tulis gaya custom..." style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-ruler-combined"></i> Komposisi</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" value="close-up"> Close-up</label>
+                    <label><input type="checkbox" value="medium-shot"> Medium Shot</label>
+                    <label><input type="checkbox" value="wide-shot"> Wide Shot</label>
+                    <label><input type="checkbox" value="bird-eye"> Bird's Eye View</label>
+                    <label><input type="checkbox" value="dutch-angle"> Dutch Angle</label>
+                </div>
+                <input type="text" id="customComposition" placeholder="Komposisi lain...">
+            </div>
+
+            <div class="form-group">
+                <label for="lighting"><i class="fas fa-lightbulb"></i> Pencahayaan</label>
+                <select id="lighting">
+                    <option value="">Pilih pencahayaan...</option>
+                    <option value="golden-hour">Golden Hour</option>
+                    <option value="blue-hour">Blue Hour</option>
+                    <option value="neon">Cahaya Neon</option>
+                    <option value="overcast">Mendung (Overcast)</option>
+                    <option value="chiaroscuro">Chiaroscuro</option>
+                    <option value="soft-box">Soft Box</option>
+                    <option value="dramatic">Cahaya Dramatis</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-smile"></i> Mood/Emosi</label>
+                <div class="tag-group" id="moodTags">
+                    <span class="tag" data-value="melankolis">Melankolis</span>
+                    <span class="tag" data-value="penuh-harap">Penuh Harap</span>
+                    <span class="tag" data-value="sunyi">Sunyi</span>
+                    <span class="tag" data-value="magis">Magis</span>
+                    <span class="tag" data-value="absurd">Absurd</span>
+                    <span class="tag" data-value="nostalgia">Nostalgia</span>
+                    <span class="tag" data-value="heroik">Heroik</span>
+                </div>
+            </div>
+
+            <div class="form-group" id="technicalParams">
+                <label><i class="fas fa-cogs"></i> Parameter Teknis</label>
+                <div class="inline-group">
+                    <select id="aspectRatio">
+                        <option value="">Rasio Aspek</option>
+                        <option value="1:1">1:1 (Square)</option>
+                        <option value="16:9">16:9 (Landscape)</option>
+                        <option value="9:16">9:16 (Portrait)</option>
+                        <option value="4:3">4:3</option>
+                        <option value="3:2">3:2</option>
+                    </select>
+                    <input type="text" id="modelVersion" placeholder="Versi model (opsional)">
+                </div>
+            </div>
+
+            <div class="form-group" id="negativePromptGroup" style="display: none;">
+                <label for="negativePrompt"><i class="fas fa-ban"></i> Negative Prompt</label>
+                <textarea id="negativePrompt" placeholder="Apa yang TIDAK ingin muncul di gambar..."></textarea>
+            </div>
+        </section>
+
+        <!-- C. Template Library -->
+        <section class="card">
+            <h2><i class="fas fa-book"></i> Bank Template</h2>
+            <select id="templateSelect">
+                <option value="">Pilih template...</option>
+            </select>
+            <button id="loadTemplate">Muat Template</button>
+        </section>
+
+        <!-- D. Output & Optimization -->
+        <section class="card">
+            <h2><i class="fas fa-sparkles"></i> Output Prompt</h2>
+            <div class="output-container">
+                <div id="finalPrompt" class="final-prompt"></div>
+                <div class="output-actions">
+                    <button id="optimizeBtn">Optimalkan untuk Platform</button>
+                    <button id="copyBtn">Salin ke Clipboard</button>
+                    <button id="downloadBtn">Unduh sebagai .txt</button>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>PromptForge Visual v1.0 - Dibuat dengan <i class="fas fa-heart"></i> untuk komunitas kreator Indonesia</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
